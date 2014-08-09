@@ -15,7 +15,7 @@ async.map(urls, function(url, callback) {
     } 
 console.log(obj);
 
-     for (var i=0; i < obj[listOfShows].length; i++)  {
+     for (var i=0; i < obj['listOfShows'].length; i++)  {
              sortbydate = obj.listOfShows[i].showTime  +  " - "  + obj.listOfShows[i+1].showTime + " ---->" + obj.listOfShows[i].showTitle;
 console.log(sortbydate);
 }
