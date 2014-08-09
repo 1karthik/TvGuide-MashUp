@@ -1,29 +1,23 @@
- var http = require('http');
-//var channelName = "maa-tv";
-var  date = "24062014";
-var querystring = require('querystring');
-var qs = querystring.stringfy({channelName: ['maa-tv', 'hbo']})
-var baseURL = 'http://indian-television-guide.appspot.com/indian_television_guide?';
+var async = require('async');
+var http = require('http');
+var request = require('request');
+var urls =[
+"http://indian-television-guide.appspot.com/indian_television_guide?channel=hbo&date=24062014", "http://indian-television-guide.appspot.com/indian_television_guide?channel=colors&date=24062014", "http://indian-television-guide.appspot.com/indian_television_guide?channel=maa-tv&date=24062014"
+];
 
-var url = baseURL + "channel=" + qs + "&date=" + date;
+async.map(urls, function(url, callback) {
+    request(url, function(err, response, body) {
+      callback(err, JSON.parse(body));
+    })
+}, function(err, obj) {
+     if(err) {
+        return console.error(err);
+    } 
+console.log(obj);
 
-var MongoClient = require('mongodb').MongoClient
-                        , format = require('util').format;
-
-http.get(url, function(res) {
-    var body = '';
-
-    res.on('data', function(chunk) {
-        body += chunk;
-    });
-
-    res.on('end', function() {
-        var obj = JSON.parse(body)
-        console.log("By date", obj.date);
-         for (var i=0; i < obj['listOfShows'].length; i++)  {
+     for (var i=0; i < obj[listOfShows].length; i++)  {
              sortbydate = obj.listOfShows[i].showTime  +  " - "  + obj.listOfShows[i+1].showTime + " ---->" + obj.listOfShows[i].showTitle;
+console.log(sortbydate);
 }
-});
-}).on('error', function(e) {
-      console.log("error: ", e);
+
 });
