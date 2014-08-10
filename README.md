@@ -1,6 +1,7 @@
 TvGuide-MashUp
 ==============
 The project is to determine the TvChannel ratings using twitter api
+
 TvChannel ratings are determined by Mashing-up tvguide and twitterapi 
 This project gives you the best channel.The best channel is calculated based on the hashtags and their count associated with that Tv program. For each Tv program there are hashtags which are collected using twitter api, we retrive all hashtags and based upon the hashtags used in tweets count is determined. All the information is stored in the database.
 
